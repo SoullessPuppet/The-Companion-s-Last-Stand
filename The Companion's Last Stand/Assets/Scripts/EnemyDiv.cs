@@ -3,17 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
 
-public class EnemyDiv : MonoBehaviour
+public class EnemyDiv : UnitType
 {
-    public SelectHitbox selectHitbox;
-    public CircleCollider2D attackRange;
-    AIPath pather;
-    AIDestinationSetter dSetter;
-    public float attackPower = 0;
-    public float attackSlow = 0.5f;
-    public float damageResist = 0;
-    public float moveSpeed = 1;
-    public bool locked = false;
     List<GameObject> possibleTargets = new();
     GameObject curTarget;
 
@@ -22,16 +13,24 @@ public class EnemyDiv : MonoBehaviour
     {
         pather = GetComponent<AIPath>();
         dSetter = GetComponent<AIDestinationSetter>();
+        hitbox = GetComponent<CircleCollider2D>();
+        defaultHitboxRadius = hitbox.radius;
         StartCoroutine("RefreshTargetsRoutine");
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (hp <= 0)
+        {
+            DeathEffects();
+            return; //Skip the rest if hp <= 0:
+        }
+        ResizeByHP();
+
         if (locked)
-            return;
-        //Only when not locked:
-        pather.maxSpeed = moveSpeed;
+            return; //Skip the rest if locked:
+        UpdateMoveSpeed();
     }
 
     IEnumerator RefreshTargetsRoutine()
