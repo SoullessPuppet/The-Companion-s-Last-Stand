@@ -4,51 +4,36 @@ using UnityEngine;
 
 public class AttackRange : MonoBehaviour
 {
-    public List<GameObject> inAttackRangeList;
-    GameObject attackRangeOwner;
+    public List<UnitType> inAttackRangeList;
+    UnitType attackRangeOwner;
 
     private void Start()
     {
-        attackRangeOwner = this.transform.parent.gameObject;
+        GameObject parentGO = this.transform.parent.gameObject;
+        attackRangeOwner = parentGO.GetComponent<UnitType>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (inAttackRangeList.Contains(collision.gameObject))
+        if (collision.gameObject.GetComponent<UnitType>() == null)
             return;
-
-        inAttackRangeList.Add(collision.gameObject);
-        if (collision.CompareTag("PlayerTeam"))
-        {
-            collision.GetComponent<PlayerDiv>().attackedByList.Add(attackRangeOwner);
-        }
-        else if (collision.CompareTag("EnemyTeam"))
-        {
-            collision.GetComponent<EnemyDiv>().attackedByList.Add(attackRangeOwner);
-        }
-        else if (collision.CompareTag("AllyTeam"))
-        {
-            collision.GetComponent<AllyDiv>().attackedByList.Add(attackRangeOwner);
-        }
-        //AllyDiv too
+        UnitType collidedUnit = collision.gameObject.GetComponent<UnitType>();
+        
+        if (inAttackRangeList.Contains(collidedUnit))
+            return;
+        inAttackRangeList.Add(collidedUnit);
+        collidedUnit.attackedByList.Add(attackRangeOwner);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (!inAttackRangeList.Contains(collision.gameObject))
+        if (collision.gameObject.GetComponent<UnitType>() == null)
+            return;
+        UnitType collidedUnit = collision.gameObject.GetComponent<UnitType>();
+
+        if (!inAttackRangeList.Contains(collidedUnit))
             return;
 
-        inAttackRangeList.Remove(collision.gameObject);
-        if (collision.CompareTag("PlayerTeam"))
-        {
-            collision.GetComponent<PlayerDiv>().attackedByList.Remove(attackRangeOwner);
-        }
-        else if (collision.CompareTag("EnemyTeam"))
-        {
-            collision.GetComponent<EnemyDiv>().attackedByList.Remove(attackRangeOwner);
-        }
-        else if (collision.CompareTag("AllyTeam"))
-        {
-            collision.GetComponent<AllyDiv>().attackedByList.Remove(attackRangeOwner);
-        }
+        inAttackRangeList.Remove(collidedUnit);
+        collision.GetComponent<UnitType>().attackedByList.Remove(attackRangeOwner);
     }
 }

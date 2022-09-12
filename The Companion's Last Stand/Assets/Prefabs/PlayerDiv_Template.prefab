@@ -299,17 +299,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf56c16dd1fc3964b80df634d91d58cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 8140479249664045501}
   selectHitbox: {fileID: 815059264106762964}
   attackRange: {fileID: 2792835041204903715}
   spriteRenderer: {fileID: 1485712414643633698}
   hp: 100
   maxHP: 100
-  attackPower: 0
   attackSlow: 0.5
   damageResist: 0
-  moveSpeed: 5
+  attackPower: 0
+  healPower: 0
+  defaultMoveSpeed: 1
   locked: 0
+  team: 0
+  closestTarget: {fileID: 0}
+  speedBonus: 0
+  attackedByList: []
+  hitbox: {fileID: 0}
+  defaultHitboxRadius: 0
+  pather: {fileID: 0}
+  dSetter: {fileID: 0}
+  gatherPoint: {fileID: 0}
 --- !u!50 &8140479248531051847
 Rigidbody2D:
   serializedVersion: 4
@@ -427,7 +436,7 @@ GameObject:
   - component: {fileID: 8140479249664045503}
   - component: {fileID: 8140479249664045472}
   m_Layer: 0
-  m_Name: Target
+  m_Name: GatherPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -5,15 +5,19 @@ using Pathfinding;
 
 public class PlayerDiv : UnitType
 {
-    public GameObject gatherPoint;
+    Transform gatherPoint;
 
     // Start is called before the first frame update
     void Start()
     {
         pather = GetComponent<AIPath>();
         hitbox = GetComponent<CircleCollider2D>();
+        selectHitbox = GetComponentInChildren<SelectHitbox>();
+        attackRange = GetComponentInChildren<AttackRange>();
+        spriteRenderer = transform.Find("SpriteRenderer").GetComponent<SpriteRenderer>();
+        gatherPoint = transform.Find("GatherPoint");
         defaultHitboxRadius = hitbox.radius;
-        InvokeRepeating("InteractWithinAttackRange", 0, 1);
+        InvokeRepeating("InteractWithinAttackRange", 0, 0.1f);
     }
 
     // Update is called once per frame
@@ -21,7 +25,7 @@ public class PlayerDiv : UnitType
     {
         if (hp <= 0)
         {
-            DeathEffects();
+            Death();
             return; //Skip the rest if hp <= 0:
         }
         ResizeByHP();
@@ -36,7 +40,7 @@ public class PlayerDiv : UnitType
         if (Input.GetMouseButtonDown(1))
         {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            gatherPoint.transform.position = new Vector3(mousePos.x, mousePos.y, 0);
+            gatherPoint.position = new Vector3(mousePos.x, mousePos.y, 0);
         }
     }
 }

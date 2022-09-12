@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6888241694646906149}
   - component: {fileID: 539779767220467435}
   - component: {fileID: 6622537841056673591}
+  - component: {fileID: 5704694141109340486}
   m_Layer: 0
   m_Name: AttackRange
   m_TagString: Untagged
@@ -101,6 +102,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &5704694141109340486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 211265529483515121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dd0cbff019eca047b9258d551997de3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inAttackRangeList: []
 --- !u!1 &7340360224169472535
 GameObject:
   m_ObjectHideFlags: 0
@@ -431,6 +445,8 @@ MonoBehaviour:
   healPower: 0
   defaultMoveSpeed: 1
   locked: 0
+  team: 0
+  closestTarget: {fileID: 0}
   speedBonus: 0
   attackedByList: []
   hitbox: {fileID: 0}

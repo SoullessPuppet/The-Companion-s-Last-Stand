@@ -28,21 +28,21 @@ public class GameManager : MonoBehaviour
                 //Get new selectedObj
                 if (hit.collider.gameObject.CompareTag("SelectHitbox"))
                 {
-                    selectedObj = hit.collider.gameObject;
-                    selectedObj = selectedObj.transform.parent.gameObject;
+                    GameObject hitboxGameObject = hit.collider.gameObject;
+                    selectedObj = hitboxGameObject.transform.parent.gameObject;
 
-                    selectedObj.GetComponentInChildren<SelectHitbox>().selected = true;
+                    hitboxGameObject.GetComponent<SelectHitbox>().selected = true;
                     selectedObj.transform.Find("AttackRange").GetComponent<SpriteRenderer>().enabled = true;
-                    if(selectedObj.transform.Find("Target") != null)
-                        selectedObj.transform.Find("Target").GetComponent<SpriteRenderer>().enabled = true;
+                    if(selectedObj.transform.Find("GatherPoint") != null)
+                        selectedObj.transform.Find("GatherPoint").GetComponent<SpriteRenderer>().enabled = true;
                 }
             }
             else if (selectedObj != null)
             {
                 selectedObj.GetComponentInChildren<SelectHitbox>().selected = false;
                 selectedObj.transform.Find("AttackRange").GetComponent<SpriteRenderer>().enabled = false;
-                if (selectedObj.transform.Find("Target") != null)
-                    selectedObj.transform.Find("Target").GetComponent<SpriteRenderer>().enabled = false;
+                if (selectedObj.transform.Find("GatherPoint") != null)
+                    selectedObj.transform.Find("GatherPoint").GetComponent<SpriteRenderer>().enabled = false;
                 selectedObj = null;
             }
         }

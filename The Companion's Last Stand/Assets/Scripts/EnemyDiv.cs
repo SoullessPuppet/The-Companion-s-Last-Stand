@@ -14,8 +14,12 @@ public class EnemyDiv : UnitType
         pather = GetComponent<AIPath>();
         dSetter = GetComponent<AIDestinationSetter>();
         hitbox = GetComponent<CircleCollider2D>();
+        selectHitbox = GetComponentInChildren<SelectHitbox>();
+        attackRange = GetComponentInChildren<AttackRange>();
+        spriteRenderer = transform.Find("SpriteRenderer").GetComponent<SpriteRenderer>();
         defaultHitboxRadius = hitbox.radius;
         StartCoroutine("RefreshTargetsRoutine");
+        InvokeRepeating("InteractWithinAttackRange", 0, 0.1f);
     }
 
     // Update is called once per frame
@@ -23,7 +27,7 @@ public class EnemyDiv : UnitType
     {
         if (hp <= 0)
         {
-            DeathEffects();
+            Death();
             return; //Skip the rest if hp <= 0:
         }
         ResizeByHP();

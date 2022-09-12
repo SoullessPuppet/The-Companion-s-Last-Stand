@@ -470,6 +470,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Structure_Template
       objectReference: {fileID: 0}
+    - target: {fileID: 8790302206969705263, guid: 68c241e7b345b6f43a761482a6f3b78f, type: 3}
+      propertyPath: healPower
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68c241e7b345b6f43a761482a6f3b78f, type: 3}
 --- !u!1001 &2348062922024692817
@@ -592,6 +596,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4934227555698231436, guid: 3fd6bb364cb853144b3e68d2eb104c1d, type: 3}
+      propertyPath: attackSlow
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 4934227555698231436, guid: 3fd6bb364cb853144b3e68d2eb104c1d, type: 3}
+      propertyPath: attackPower
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fd6bb364cb853144b3e68d2eb104c1d, type: 3}
 --- !u!1001 &8140479248651762256
@@ -610,8 +622,12 @@ PrefabInstance:
       value: PlayerTeam
       objectReference: {fileID: 0}
     - target: {fileID: 8140479248531051848, guid: 42ff24bafe458fc4d9721cf1e54a0ead, type: 3}
+      propertyPath: attackSlow
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 8140479248531051848, guid: 42ff24bafe458fc4d9721cf1e54a0ead, type: 3}
       propertyPath: attackPower
-      value: 5
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8140479248531051850, guid: 42ff24bafe458fc4d9721cf1e54a0ead, type: 3}
       propertyPath: m_RootOrder
@@ -656,6 +672,10 @@ PrefabInstance:
     - target: {fileID: 8140479248531051850, guid: 42ff24bafe458fc4d9721cf1e54a0ead, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8140479249664045501, guid: 42ff24bafe458fc4d9721cf1e54a0ead, type: 3}
+      propertyPath: m_Name
+      value: GatherPoint
       objectReference: {fileID: 0}
     - target: {fileID: 8140479249947132532, guid: 42ff24bafe458fc4d9721cf1e54a0ead, type: 3}
       propertyPath: m_IsTrigger

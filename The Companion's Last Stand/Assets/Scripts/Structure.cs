@@ -8,8 +8,17 @@ public class Structure : UnitType
     public int regenPerSec = 1;
     void Start()
     {
-        InvokeRepeating("InteractWithinAttackRange", 0, 1);
-        InvokeRepeating("StructureRegen", 0, 1);
+        hitbox = GetComponent<CircleCollider2D>();
+        selectHitbox = GetComponentInChildren<SelectHitbox>();
+        attackRange = GetComponentInChildren<AttackRange>();
+        spriteRenderer = transform.Find("SpriteRenderer").GetComponent<SpriteRenderer>();
+        if (CompareTag("PlayerTeam") || CompareTag("AllyTeam"))
+            team = 1;
+        else if (CompareTag("EnemyTeam"))
+            team = -1;
+
+        InvokeRepeating("InteractWithinAttackRange", 0, 0.1f);
+        InvokeRepeating("StructureRegen", 0, 0.1f);
     }
 
     void Update()
@@ -17,15 +26,15 @@ public class Structure : UnitType
         if (hp <= 0)
         {
             hp = 1;
-            StructureCapture();
+            Death();
         }
     }
 
-    void StructureCapture()
+    public override void Death()
     {
         bool allyCapture = true;
         bool enemyCapture = true;
-        foreach (GameObject go in attackedByList)
+        foreach (UnitType go in attackedByList)
         {
             if (go.CompareTag("AllyTeam") || go.CompareTag("PlayerTeam"))
                 enemyCapture = false;
